@@ -1,0 +1,41 @@
+{
+  "name": "OCaritatif back-end",
+  "version": "1.0.0",
+  "description": "Projet apothéose",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "set DEBUG=app:* & nodemon -q index.js",
+    "initDB": "bash ./script/1.init_db.sh && psql -U postgres -d ocaritatif -f ./script/create_table.sql",
+    "seeding": "node ./data/seeding.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "O'Caritatif",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@vinejs/vine": "^2.0.0",
+    "bcrypt": "^5.1.1",
+    "cloudinary": "^1.41.3",
+    "cors": "^2.8.5",
+    "debug": "^4.3.4",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "french-badwords-list": "^1.0.7",
+    "googleapis": "^134.0.0",
+    "install": "^0.13.0",
+    "jsonwebtoken": "^9.0.2",
+    "leo-profanity": "^1.7.0",
+    "multer": "^1.4.5-lts.1",
+    "multer-storage-cloudinary": "^4.0.0",
+    "nodemailer": "^6.9.13",
+    "pg": "^8.11.3",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
+    "winston": "^3.13.0"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.4.1"
+  }
+}
