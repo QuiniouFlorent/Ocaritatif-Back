@@ -1,58 +1,47 @@
 import debug from 'debug';
-const logger = debug('app:server');
+const logger = debug('app:controller');
 
-import 'dotenv/config';
-import express, { urlencoded } from 'express';
-const app = express();
+import aboutdataController from './aboutdataController.js';
+import commentController from './commentController.js';
+import contactusController from './contactusController.js'
+import eventController from './eventController.js';
+import boardmemberController from './boardmemberController.js';
+import galerieController from './galerieController.js';
+import homeController from './homeController.js';
+import homedataController from './homedataController.js';
+import itemController from './itemController.js';
+import itemreservationController from './itemreservation.js';
+import newsController from './newsController.js';
+import notificationController from './notificationController.js';
+import opinionController from './opinionController.js';
+import photoController from './photoController.js';
+import photoaboutController from './photoaboutController.js';
+import photohomeController from './photohomeController.js';
+import registrationController from './registrationController.js';
+import settingController from './settingController.js';
+import sponsorController from './sponsorController.js';
+import userController from './userController.js';
 
-import router from './app/router/index.js';
-import cors from 'cors';
+logger('Main controller initialized');
 
-app.use(cors());
-
-/*** AJOUT DE OPENAPI - Documentation de notre API */
-
-// https://sebacode.medium.com/how-to-document-a-node-js-api-with-swagger-554101246a4d
-import swaggerJsdoc from 'swagger-jsdoc';
-import swaggerUI from 'swagger-ui-express';
-
-const options = {
-  definition: {
-    openapi: '3.0.0',
-    info: {
-      title: 'Documentation for our API Ocaritatif',
-      version: '1.0.0',
-      description: 'This is a API application made with Express',
-      contact: {
-        name: 'O\'caritatif',
-        url: 'https://o-caritatif-deploy.vercel.app/contact'
-      }
-    },
-    servers: [
-      {
-        url: 'http://localhost:3000',
-        description: 'Development server'
-      },
-      {
-        url : 'https://app-ocaritatif-e8cb111b5f68.herokuapp.com/',
-        description: 'Production server'
-      }
-    ]
-  },
-  apis: ['./app/router/*/*.js'], // files containing annotations as above
+export {aboutdataController,
+        commentController,
+        contactusController,
+        eventController, 
+        boardmemberController,
+        galerieController, 
+        homeController,
+        homedataController,
+        itemController,
+        itemreservationController,
+        newsController,
+        notificationController,
+        opinionController,
+        photoController, 
+        photoaboutController,
+        photohomeController,
+        registrationController,
+        settingController,
+        sponsorController, 
+        userController 
 };
-
-const openapiSpecification = swaggerJsdoc(options);
-
-app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(openapiSpecification));
-
-app.use(express.json());
-app.use(urlencoded({extended: true}));
-
-//app.use('/image', express.static('image'));
-app.use(router);
-
-const PORT = process.env.PORT;
-app.listen(PORT, () => {
-    logger(`Server started on http://localhost:${PORT}`);
-});
